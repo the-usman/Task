@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { storage } from '../../firebase';
 import { ref, uploadBytes, listAll, getDownloadURL } from 'firebase/storage';
 import { v4 } from 'uuid';
+import { Link } from 'react-router-dom';
 
 const ImageUploader = () => {
     const [imageList, setImageList] = useState([]);
@@ -73,26 +74,18 @@ const ImageUploader = () => {
                     />
                     <label
                         htmlFor="inputfile"
-                        className='bg-gradient-to-r from-green-600 to-yellow-500 border-0 p-4 text-3xl rounded-full px-16 font-semibold text-white my-20 transition-transform transform hover:scale-125 '
+                        className='bg-gradient-to-r from-green-600 to-yellow-500 border-0 p-4 text-3xl rounded-full px-16 font-semibold text-white my-20 transition-transform transform hover:scale-125 m-3'
                     >
                         Upload from Gallery
                     </label>
-                    <input
-                        type="file"
-                        accept="image/*"
-                        capture="environment"
-                        name="file"
-                        id="camerafile"
-                        className=''
-                        style={{ display: 'none' }}
-                        onChange={handleCapture}
-                    />
-                    <label
-                        htmlFor="camerafile"
-                        className='bg-gradient-to-r from-green-600 to-yellow-500 border-0 p-4 text-3xl rounded-full px-16 font-semibold text-white my-20 transition-transform transform hover:scale-125 '
-                    >
-                        Capture from Camera
-                    </label>
+                    <Link to={'/camera'}>
+                        <div
+
+                            className='bg-gradient-to-r from-green-600 to-yellow-500 border-0 p-4 text-3xl rounded-full px-16 font-semibold text-white my-20 transition-transform transform hover:scale-105 m-3'
+                        >
+                            Capture from Camera
+                        </div>
+                    </Link>
                 </div>
             </div>
             <div className="images flex flex-wrap">
@@ -102,8 +95,8 @@ const ImageUploader = () => {
                         <img src={image} alt={`Uploaded ${index}`} className='w-[300px] h-[200px] rounded-xl' />
                         <div className=" w-[300px] bg-gradient-to-r from-green-600  to-yellow-500 text-white p-1 rounded-3xl mt-3">
                             <a href={image} download>
-                                <button className="text-center font-semibold w-[100%] bg-white rounded-[calc(1.5rem-3px)] p-[10px] text-xl hover:bg-transparent text-black hover:text-white ">
-                                    Download Now
+                                <button className="text-center font-semibold w-[100%] bg-white rounded-[calc(1.5rem-3px)] p-[10px] text-xl hover:bg-transparent text-black hover:text-white">
+                                    View Full Page
                                 </button>
                             </a>
                         </div>

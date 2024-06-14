@@ -6,6 +6,7 @@ import ImageUploader from './assets/pages/ImageUploader';
 import NotificationButton from './assets/pages/Notification';
 import FirestoreText from './assets/pages/FirestoreText';
 import CameraComponent from './assets/pages/CameraComponent';
+import { Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
@@ -13,9 +14,13 @@ function App() {
       {/* <Login /> */}
       {/* <SignUp /> */}
       {/* <ImageUploader /> */}
-      <CameraComponent />
+      {/* <CameraComponent /> */}
       {/* <NotificationButton /> */}
       {/* <FirestoreText /> */}
+      <Routes>
+        <Route path='/camera' element={<CameraComponent />} />
+        <Route path='/' element={<ImageUploader /> } />
+      </Routes>
     </div>
   );
 }

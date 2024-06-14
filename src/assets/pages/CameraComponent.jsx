@@ -1,8 +1,9 @@
-// src/components/CameraComponent.js
-
 import React, { useRef, useCallback, useState } from 'react';
 import Webcam from 'react-webcam';
 import html2canvas from 'html2canvas';
+import { storage } from '../../firebase'; // Adjust the path as necessary
+import { ref, uploadString } from 'firebase/storage';
+import { v4 as uuidv4 } from 'uuid';
 
 const CameraComponent = () => {
     const webcamRef = useRef(null);
@@ -13,20 +14,28 @@ const CameraComponent = () => {
         setImgSrc(imageSrc);
     }, [webcamRef]);
 
-    const savePhoto = () => {
-        // Use html2canvas to convert the webcam feed to an image file
-        html2canvas(webcamRef.current.video, { useCORS: true }).then(canvas => {
+    const savePhoto = async () => {
+        if (webcamRef.current && webcamRef.current.video) {
+            const canvas = await html2canvas(webcamRef.current.video, { useCORS: true });
             const imgData = canvas.toDataURL('image/png');
-            const link = document.createElement('a');
-            link.download = 'photo.png';
-            link.href = imgData;
-            link.click();
-        });
+
+            const fileName = `photo-${uuidv4()}.png`;
+
+            const storageRef = ref(storage, `image/${fileName}`);
+
+            try {
+                await uploadString(storageRef, imgData, 'data_url');
+                alert('Photo uploaded successfully!');
+            } catch (error) {
+                console.error('Error uploading photo:', error);
+                alert('Error uploading photo');
+            }
+        }
     };
 
     return (
-        <div>
-            <h1 className='text-5xl'>Camera Page</h1>
+        <div className='flex flex-col container m-auto'>
+
             <Webcam
                 audio={false}
                 ref={webcamRef}
@@ -35,11 +44,13 @@ const CameraComponent = () => {
                 height="auto"
                 mirrored={true}
             />
-            <button onClick={capture}>Capture Photo</button>
+            <div className=" bg-gradient-to-r from-green-600  to-yellow-500 text-white p-1 rounded-3xl mt-3">
+                <button onClick={capture} className="text-center font-semibold w-[100%] bg-white rounded-[calc(1.5rem-3px)] p-[10px] text-xl hover:bg-transparent text-black hover:text-white">Capture Photo</button>
+                </div>
             {imgSrc && (
                 <>
-                    <img src={imgSrc} alt="Captured" />
-                    <button onClick={savePhoto}>Save Photo</button>
+                    <img src={imgSrc} alt="Captured" className="mt-4" />
+                    <button onClick={savePhoto} className="bg-green-500 text-white p-2 rounded mt-4">Save Photo</button>
                 </>
             )}
         </div>
