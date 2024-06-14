@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios"; // Assuming you use Axios for HTTP requests
 import Loader from "./Loader";
 import { Link, useNavigate } from "react-router-dom";
 
