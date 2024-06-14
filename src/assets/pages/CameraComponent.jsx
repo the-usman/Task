@@ -26,6 +26,7 @@ const CameraComponent = () => {
 
     return (
         <div>
+            <h1 className='text-5xl'>Camera Page</h1>
             <Webcam
                 audio={false}
                 ref={webcamRef}
