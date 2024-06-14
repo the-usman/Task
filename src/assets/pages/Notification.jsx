@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Navbar from './Navbar';
 
 const NotificationButton = () => {
     const showNotification = (title, body) => {
@@ -18,23 +19,28 @@ const NotificationButton = () => {
     }
 
     return (
-        <div className="notificationButtonContainer" style={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: 'black' }}>
-            <button 
-                onClick={handleClick} 
-                style={{
-                    backgroundColor: 'red',
-                    color: 'white',
-                    padding: '20px 40px',
-                    fontSize: '24px',
-                    border: 'none',
-                    borderRadius: '10px',
-                    cursor: 'pointer',
-                    
-                }}
-            >
-                Click Me
-            </button>
-        </div>
+        <>
+            
+            <div className="notificationButtonContainer" style={{ height: '100vh', display: 'flex', alignItems: 'center', backgroundColor: 'black', flexDirection: "column" }}>
+            <Navbar />
+                <button
+                    onClick={handleClick}
+                    style={{
+                        backgroundColor: 'red',
+                        color: 'white',
+                        padding: '20px 40px',
+                        fontSize: '24px',
+                        border: 'none',
+                        borderRadius: '10px',
+                        cursor: 'pointer',
+                        marginTop: "100px"
+
+                    }}
+                >
+                    Click Me
+                </button>
+            </div>
+        </>
     );
 }
 
