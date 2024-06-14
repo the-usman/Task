@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { db } from '../../firebase';
 import { collection, addDoc, onSnapshot } from 'firebase/firestore';
 
+
+
 const FirestoreText = () => {
     const [text, setText] = useState('');
     const [texts, setTexts] = useState([]);

@@ -74,21 +74,21 @@ const ImageUploader = () => {
                     />
                     <label
                         htmlFor="inputfile"
-                        className='bg-gradient-to-r from-green-600 to-yellow-500 border-0 p-4 text-3xl rounded-full px-16 font-semibold text-white my-20 transition-transform transform hover:scale-125 m-3'
+                        className='bg-gradient-to-r from-green-600 to-yellow-500 border-0 p-2 lg:text-3xl xl:text-3xl rounded-full lg:px-16 xl:px-16  font-semibold text-white my-20 transition-transform transform hover:scale-125 m-3  px-3 text-xl'
                     >
                         Upload from Gallery
                     </label>
                     <Link to={'/camera'}>
                         <div
 
-                            className='bg-gradient-to-r from-green-600 to-yellow-500 border-0 p-4 text-3xl rounded-full px-16 font-semibold text-white my-20 transition-transform transform hover:scale-105 m-3'
+                            className='bg-gradient-to-r from-green-600 to-yellow-500 border-0 p-2 lg:text-3xl xl:text-3xl rounded-full lg:px-16 xl:px-16  font-semibold text-white my-20 transition-transform transform hover:scale-105 m-3  px-3 text-xl'
                         >
                             Capture from Camera
                         </div>
                     </Link>
                 </div>
             </div>
-            <div className="images flex flex-wrap">
+            <div className="images flex flex-wrap container m-auto">
 
                 {imageList.map((image, index) => (
                     <div key={index} className="image p-2 border-2 m-2 border-green-600 rounded-xl">
