@@ -16,7 +16,7 @@ const Operation = () => {
     const handleResult = async () => {
         setIsLoading(true);
         try {
-            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/operation`, {
+            const response = await fetch(`https://task-back-end-five.vercel.app/operation`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
