@@ -3,6 +3,7 @@ import Navbar from './Navbar';
 
 const NotificationButton = () => {
     const [isPermissionGranted, setIsPermissionGranted] = useState(false);
+    const [isDesktop, setIsDesktop] = useState(true);
 
     const showNotification = (title, body) => {
         if (isPermissionGranted) {
@@ -13,9 +14,13 @@ const NotificationButton = () => {
     }
 
     useEffect(() => {
+        const userAgent = navigator.userAgent;
+        const isMobile = /Mobi|Android/i.test(userAgent);
+        setIsDesktop(!isMobile);
+
         if (!("Notification" in window)) {
             alert('This browser does not support desktop notifications.');
-        } else {
+        } else if (!isMobile && Notification.permission !== 'granted') {
             Notification.requestPermission().then(permission => {
                 if (permission === 'granted') {
                     setIsPermissionGranted(true);
@@ -23,10 +28,17 @@ const NotificationButton = () => {
                     alert('Please enable notifications for this site in your browser settings.');
                 }
             });
+        } else if (isMobile) {
+            alert('Notifications are only supported on desktop.');
         }
     }, []);
 
     const handleClick = () => {
+        if (!isDesktop) {
+            alert('Notifications are only supported on desktop.');
+            return;
+        }
+
         if ("Notification" in window) {
             if (isPermissionGranted) {
                 showNotification('Button Clicked', 'You have clicked the big red button!');
