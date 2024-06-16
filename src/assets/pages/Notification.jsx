@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from './Navbar';
 
 const NotificationButton = () => {
+    const [isPermissionGranted, setIsPermissionGranted] = useState(false);
+
     const showNotification = (title, body) => {
-        if (Notification.permission === 'granted') {
+        if (isPermissionGranted) {
             new Notification(title, { body });
         } else {
             alert('Notification permission is not granted.');
@@ -13,9 +15,11 @@ const NotificationButton = () => {
     useEffect(() => {
         if (!("Notification" in window)) {
             alert('This browser does not support desktop notifications.');
-        } else if (Notification.permission !== 'granted') {
+        } else {
             Notification.requestPermission().then(permission => {
-                if (permission !== 'granted') {
+                if (permission === 'granted') {
+                    setIsPermissionGranted(true);
+                } else {
                     alert('Please enable notifications for this site in your browser settings.');
                 }
             });
@@ -24,11 +28,12 @@ const NotificationButton = () => {
 
     const handleClick = () => {
         if ("Notification" in window) {
-            if (Notification.permission === 'granted') {
+            if (isPermissionGranted) {
                 showNotification('Button Clicked', 'You have clicked the big red button!');
             } else if (Notification.permission !== 'denied') {
                 Notification.requestPermission().then(permission => {
                     if (permission === 'granted') {
+                        setIsPermissionGranted(true);
                         showNotification('Button Clicked', 'You have clicked the big red button!');
                     } else {
                         alert('Please enable notifications for this site in your browser settings.');
