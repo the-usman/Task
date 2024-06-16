@@ -39,13 +39,13 @@ const FirestoreText = () => {
 
     return (
         <div className="">
-            <div className="flex justify-start items-center min-h-[100vh] bg-black flex-col px-2">
+            <div className="flex justify-start items-center min-h-[100vh] bg-black flex-col px-2 w-[98.7vw]">
                 <Navbar />
                 <h1 className='text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-yellow-500 text-5xl m-5 font-bold mt-20'>
                     Task Build Snap Message Sender
                 </h1>
                 <div className='flex justify-start items-center flex-col'>
-                    <div className='flex mt-20 flex-wrap justify-evenly w-[100vw]'>
+                    <div className='flex mt-20 flex-wrap justify-evenly w-[98.7vw]'>
                         <div className='flex justify-center items-center flex-wrap'>
                             <div>
                                 <input
