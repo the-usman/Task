@@ -16,7 +16,7 @@ const Navbar = () => {
 
     return (
         <div>
-            <nav className="bg-white border-gray-200 dark:bg-gray-900 w-[98.7vw] text-white">
+            <nav className=" border-gray-200 bg-gray-900 w-[98.7vw] text-white">
                 <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                     <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
                         <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">TaskBuild</span>
@@ -24,7 +24,7 @@ const Navbar = () => {
                     <button
                         onClick={toggleNavbar}
                         type="button"
-                        className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm  rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2  text-gray-400 hover:bg-gray-700 focus:ring-gray-600"
+                        className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm  rounded-lg md:hidden  focus:outline-none focus:ring-2  text-gray-400 hover:bg-gray-700 focus:ring-gray-600"
                         aria-controls="navbar-default"
                         aria-expanded={isOpen}
                     >
